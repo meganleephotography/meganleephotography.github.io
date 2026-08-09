@@ -25,6 +25,8 @@
     --rule-sage: #d9e0d4;
     --serif: Didot, "Bodoni MT", "Playfair Display", "Hoefler Text", Georgia, serif;
     --sans: "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    /* mono carries the editorial furniture — eyebrows, captions, nav, index numbers */
+    --mono: ui-monospace, "SF Mono", "IBM Plex Mono", "Roboto Mono", Menlo, Consolas, monospace;
   }
 
   * { box-sizing: border-box; }
@@ -43,16 +45,22 @@
   img, svg { max-width: 100%; }
 
   .eyebrow {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--lav-deep);
+    color: var(--sage-deep);
   }
   h1, h2, h3 { font-family: var(--serif); font-weight: 500; text-wrap: balance; margin: 0; }
-  h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.08; letter-spacing: 0.005em; }
-  h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; }
-  h3 { font-size: 1.25rem; }
+  /* display type is the whole personality here — big, tight, set close */
+  h1 { font-size: clamp(2.8rem, 6.4vw, 5.6rem); line-height: 0.96; letter-spacing: -0.03em; }
+  h2 { font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.0; letter-spacing: -0.028em; }
+  h3 { font-size: 1.25rem; letter-spacing: -0.012em; }
+  /* lowercase on the display line reads current. .page-title opts in; the About h1
+     deliberately does not, because lowercasing "Hi, I'm Megan." lowercases her name */
+  .hero h1, section h2, .page-title { text-transform: lowercase; }
+  .page-title { font-size: clamp(2.6rem, 5.6vw, 4.6rem); }
   .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 56ch; }
   em.serif { font-family: var(--serif); font-style: italic; }
 
@@ -83,10 +91,12 @@
   .nav-links a {
     text-decoration: none;
     color: var(--ink-soft);
-    font-size: 0.86rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    padding: 8px 14px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 9px 14px;
     border-radius: 999px;
   }
   .nav-links a:hover { color: var(--ink); background: var(--lav-wash); }
@@ -125,46 +135,68 @@
   /* ---------- placeholder frames ---------- */
   figure.ph { margin: 0; }
   figure.ph .art {
-    border-radius: 4px;
+    border-radius: 2px;
     overflow: hidden;
     display: block;
     box-shadow: 0 1px 2px rgba(62, 54, 73, 0.08), 0 12px 32px rgba(62, 54, 73, 0.09);
   }
   figure.ph .art svg { display: block; width: 100%; height: auto; }
   figure.ph figcaption {
-    margin-top: 9px;
-    font-size: 0.76rem;
+    margin-top: 11px;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--ink-soft);
     display: flex;
     justify-content: space-between;
     gap: 12px;
   }
-  figure.ph figcaption i { font-family: var(--serif); font-size: 0.85rem; }
-  figure.ph figcaption small { letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.62rem; align-self: center; }
+  figure.ph figcaption i { font-style: normal; }
+  figure.ph figcaption small { font-size: 0.6rem; align-self: center; opacity: 0.62; }
 
   /* ---------- home hero ---------- */
-  .hero { padding: 84px 0 64px; overflow: hidden; }
+  .hero { padding: 96px 0 76px; overflow: hidden; }
+  /* the hero breaks the container: copy holds the page's left rail, images run off the right edge */
+  .hero .wrap {
+    max-width: none;
+    padding-left: max(24px, calc((100vw - 1120px) / 2));
+    padding-right: 0;
+  }
   .hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-    gap: 56px;
+    gap: 52px;
     align-items: center;
   }
   .hero-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
-  .hero-note { font-size: 0.8rem; color: var(--ink-soft); }
+  .hero-note { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
   .collage {
     position: relative;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    gap: 14px;
   }
-  .collage figure:nth-child(1) { transform: translateY(26px); }
-  .collage figure:nth-child(3) { grid-column: 1 / -1; width: 68%; margin: 0 auto; transform: translateY(-6px); }
+  /* staggered, and the third genuinely overlaps the two above it */
+  .collage figure:nth-child(1) { transform: translateY(54px); }
+  .collage figure:nth-child(2) { transform: translateY(-16px); }
+  .collage figure:nth-child(3) {
+    grid-column: 1 / -1;
+    width: 58%;
+    margin: -20% 0 0 6%;
+    position: relative;
+    z-index: 2;
+  }
+  /* captions would collide with the overlap, and the hero reads cleaner without them.
+     needs to out-specify `figure.ph figcaption`, which sets display: flex */
+  .collage figure.ph figcaption { display: none; }
 
   @media (max-width: 860px) {
     .hero { padding: 56px 0 40px; }
+    .hero .wrap { padding-right: 24px; }
     .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    .collage figure:nth-child(1) { transform: translateY(32px); }
     section { padding: 56px 0; }
   }
 
@@ -179,23 +211,69 @@
   }
   .head-row .lede { margin: 6px 0 0; }
   /* six categories, so three across reads evenly rather than a 4 + 2 orphan row */
-  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 58px 26px; counter-reset: cat; }
+  /* drop the middle column so the row reads as a run of frames, not a filing cabinet.
+     keyed to the column, not :nth-child(even) — that scatters once the rows wrap */
+  .cat-grid > :nth-child(3n + 2) { transform: translateY(34px); }
   /* stays two-up even on phones — six stacked full-width cards is a punishing scroll */
-  @media (max-width: 940px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .cat-grid { gap: 14px; } }
+  @media (max-width: 940px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 44px 20px; }
+    .cat-grid > :nth-child(3n + 2) { transform: none; }
+    .cat-grid > :nth-child(even) { transform: translateY(26px); }
+  }
+  @media (max-width: 560px) {
+    .cat-grid { gap: 28px 14px; }
+    .cat-grid > :nth-child(even) { transform: translateY(16px); }
+  }
 
-  .cat { text-decoration: none; color: var(--ink); display: block; }
+  .cat { text-decoration: none; color: var(--ink); display: block; counter-increment: cat; }
   .cat h3 { margin: 14px 0 4px; }
+  /* numbered index — the single cheapest editorial tell */
+  .cat h3::before {
+    content: counter(cat, decimal-leading-zero);
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--sage-deep);
+    margin-bottom: 7px;
+  }
   .cat p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
-  .cat .art { transition: transform 0.25s ease; }
-  .cat:hover .art { transform: translateY(-4px); }
+  /* zoom inside the frame rather than nudging the whole box */
+  .cat .art svg { transition: transform 0.55s cubic-bezier(0.2, 0.7, 0.3, 1); }
+  .cat:hover .art svg { transform: scale(1.055); }
   .cat:focus-visible { outline: 2px solid var(--lav); outline-offset: 4px; border-radius: 4px; }
+
+  /* ---------- dark anchor band ---------- */
+  /* one full-bleed dark section stops the page being pastel the whole way down */
+  section.dark {
+    background: var(--green-deep);
+    color: var(--paper);
+    padding: 92px 0;
+  }
+  /* every muted tone here is picked to clear 4.5:1 on BOTH the green and the
+     lighter testimonial card sitting on top of it — the card is the tighter constraint */
+  section.dark .eyebrow { color: #ccd6c8; }
+  section.dark h2 { color: var(--paper); }
+  section.dark .hero-note, section.dark .swipe-hint { color: #ccd6c8; }
+  section.dark .testi { background: rgba(251, 249, 245, 0.07); }
+  section.dark .testi blockquote { color: var(--paper); }
+  section.dark .testi .who b { color: var(--paper); }
+  section.dark .testi .who span { color: #ccd6c8; }
+  /* the board gold is far too dark to sit on green; this is its light counterpart */
+  section.dark .testi .stars { color: #e0d2b8; }
+  section.dark .step { border-top-color: rgba(251, 249, 245, 0.5); }
+  section.dark .step:nth-child(even) { border-top-color: rgba(204, 214, 200, 0.6); }
+  section.dark .step::before,
+  section.dark .step:nth-child(even)::before { color: #ccd6c8; }
+  section.dark .step b { color: var(--paper); }
+  section.dark .step p { color: #ccd6c8; }
 
   /* ---------- testimonials ---------- */
   .testis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .testi {
     background: var(--sage-wash);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 30px 28px;
     display: flex;
     flex-direction: column;
@@ -222,7 +300,7 @@
   .band {
     background: var(--ink);
     color: var(--paper);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 56px clamp(24px, 6vw, 72px);
     display: flex;
     align-items: center;
@@ -263,7 +341,7 @@
   .pkgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: stretch; }
   .pkg {
     border: 1px solid var(--rule);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 34px 30px;
     display: flex;
     flex-direction: column;
@@ -360,7 +438,7 @@
   .swap-note {
     background: var(--gold-wash);
     border-left: 3px solid var(--gold);
-    border-radius: 6px;
+    border-radius: 2px;
     padding: 14px 20px;
     font-size: 0.85rem;
     color: #6b5647;
@@ -614,7 +692,7 @@
         "</div>" +
       "</div></section>" +
 
-      "<section class='rule-top'><div class='wrap'>" +
+      "<section class='dark'><div class='wrap'>" +
         "<div class='head-row reveal'><div>" +
           "<span class='eyebrow'>Kind words</span>" +
           "<h2>From the people in the photos.</h2>" +
@@ -688,7 +766,7 @@
         "<p class='swipe-hint'>Swipe to compare packages →</p>" +
       "</div></section>" +
 
-      "<section class='rule-top'><div class='wrap'>" +
+      "<section class='dark'><div class='wrap'>" +
         "<div class='head-row reveal'><div><span class='eyebrow'>How it works</span><h2>From hello to hung-on-the-wall.</h2></div></div>" +
         "<div class='steps reveal'>" +
           "<div class='step'><b>Say hello</b><p>Send a note with your date and what you're dreaming up. I'll reply within two days.</p></div>" +
@@ -735,7 +813,7 @@
       "<section><div class='wrap'>" +
         "<div class='reveal'>" +
           "<span class='eyebrow'>Portfolio</span>" +
-          "<h1 style='font-size: clamp(2rem, 4vw, 3rem)'>Moments, kept.</h1>" +
+          "<h1 class='page-title'>Moments, kept.</h1>" +
           "<p class='lede' style='margin-top: 12px'>A rotating collection of recent favorites.</p>" +
           "<p class='swap-note' style='margin-top: 20px'><b>Note for Megan:</b> these frames are placeholders in your brand palette. Send me your photos from <a href='https://www.instagram.com/meg.lee.moments/' target='_blank' rel='noopener'>@meg.lee.moments</a> (Instagram blocks me from fetching them directly) and they'll drop straight into this grid.</p>" +
         "</div>" +
