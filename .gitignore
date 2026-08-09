@@ -1,0 +1,9 @@
+.claude/
+.credentials.json
+*.token
+node_modules/
+.DS_Store
+.devcontainer/
+resources/download*.png
+site/pagescript.js
+site/site.html

@@ -1,0 +1,788 @@
+<title>Megan Lee Photography</title>
+<style>
+  /* A deliberately light, airy brand world — ivory paper, plum ink, lavender accents.
+     Single-theme by design: the palette IS the brand. */
+  :root {
+    --paper: #fbf9f5;
+    --paper-deep: #f3eef7;
+    --ink: #3e3649;
+    --ink-soft: #7a7086;
+    --lav: #a48fc4;
+    --lav-deep: #7c689c;
+    --lav-wash: #efeaf6;
+    --blush: #e8d8e0;
+    --sage: #dde5d8;
+    --apricot: #f2e2d4;
+    --rule: #e2dbea;
+    --serif: Didot, "Bodoni MT", "Playfair Display", "Hoefler Text", Georgia, serif;
+    --sans: "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--lav-deep); }
+  img, svg { max-width: 100%; }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--lav-deep);
+  }
+  h1, h2, h3 { font-family: var(--serif); font-weight: 500; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.08; letter-spacing: 0.005em; }
+  h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.15; }
+  h3 { font-size: 1.25rem; }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 56ch; }
+  em.serif { font-family: var(--serif); font-style: italic; }
+
+  /* ---------- nav ---------- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251, 249, 245, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-in {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .brand { display: block; flex: none; }
+  .brand img { display: block; height: 44px; width: auto; }
+  .brand:focus-visible { outline: 2px solid var(--lav); outline-offset: 3px; border-radius: 4px; }
+  @media (max-width: 560px) { .brand img { height: 36px; } }
+  .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--lav-wash); }
+  .nav-links a.on { color: var(--ink); background: var(--lav-wash); }
+  .nav-links a:focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
+
+  /* ---------- shared layout ---------- */
+  main { min-height: 70vh; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; }
+  section.tight { padding: 48px 0; }
+  .rule-top { border-top: 1px solid var(--rule); }
+
+  .btn {
+    display: inline-block;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    padding: 13px 26px;
+    border-radius: 999px;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: var(--lav-deep); border-color: var(--lav-deep); }
+  .btn.quiet { border-color: var(--rule); color: var(--ink-soft); }
+  .btn.quiet:hover { border-color: var(--ink); color: var(--ink); background: transparent; }
+  .btn:focus-visible { outline: 2px solid var(--lav); outline-offset: 3px; }
+
+  /* ---------- placeholder frames ---------- */
+  figure.ph { margin: 0; }
+  figure.ph .art {
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    box-shadow: 0 1px 2px rgba(62, 54, 73, 0.08), 0 12px 32px rgba(62, 54, 73, 0.09);
+  }
+  figure.ph .art svg { display: block; width: 100%; height: auto; }
+  figure.ph figcaption {
+    margin-top: 9px;
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  figure.ph figcaption i { font-family: var(--serif); font-size: 0.85rem; }
+  figure.ph figcaption small { letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.62rem; align-self: center; }
+
+  /* ---------- home hero ---------- */
+  .hero { padding: 84px 0 64px; overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+    gap: 56px;
+    align-items: center;
+  }
+  .hero-copy { display: flex; flex-direction: column; gap: 22px; align-items: flex-start; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+  .hero-note { font-size: 0.8rem; color: var(--ink-soft); }
+  .collage {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .collage figure:nth-child(1) { transform: translateY(26px); }
+  .collage figure:nth-child(3) { grid-column: 1 / -1; width: 68%; margin: 0 auto; transform: translateY(-6px); }
+
+  @media (max-width: 860px) {
+    .hero { padding: 56px 0 40px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+    section { padding: 56px 0; }
+  }
+
+  /* ---------- cards / grids ---------- */
+  .head-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+  }
+  .head-row .lede { margin: 6px 0 0; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  @media (max-width: 940px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .grid4 { grid-template-columns: 1fr; } }
+
+  .cat { text-decoration: none; color: var(--ink); display: block; }
+  .cat h3 { margin: 14px 0 4px; }
+  .cat p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+  .cat .art { transition: transform 0.25s ease; }
+  .cat:hover .art { transform: translateY(-4px); }
+  .cat:focus-visible { outline: 2px solid var(--lav); outline-offset: 4px; border-radius: 4px; }
+
+  /* ---------- testimonials ---------- */
+  .testis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+  .testi {
+    background: var(--lav-wash);
+    border-radius: 6px;
+    padding: 30px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .testi .stars { color: var(--lav-deep); letter-spacing: 0.22em; font-size: 0.8rem; }
+  .testi blockquote {
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.08rem;
+    line-height: 1.5;
+  }
+  .testi .who { margin-top: auto; padding-top: 6px; }
+  .testi .who b { display: block; font-size: 0.9rem; font-weight: 600; }
+  .testi .who span {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lav-deep);
+  }
+
+  /* ---------- cta band ---------- */
+  .band {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 6px;
+    padding: 56px clamp(24px, 6vw, 72px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .band h2 { color: var(--paper); max-width: 22ch; }
+  .band p { color: #c9c0d6; margin: 8px 0 0; font-size: 0.95rem; }
+  .band .btn { border-color: var(--paper); color: var(--paper); flex: none; }
+  .band .btn:hover { background: var(--paper); color: var(--ink); }
+
+  /* ---------- about ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 40px; } }
+  .about-copy { display: flex; flex-direction: column; gap: 18px; }
+  .about-copy p { margin: 0; max-width: 62ch; }
+  .values { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 18px; }
+  .values li { padding-left: 26px; position: relative; }
+  .values li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.55em;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--lav);
+    opacity: 0.75;
+  }
+  .values b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.08rem; }
+  .values span { font-size: 0.92rem; color: var(--ink-soft); }
+
+  /* ---------- services ---------- */
+  .pkgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; align-items: stretch; }
+  .pkg {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 34px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #fff;
+  }
+  .pkg.feature { background: var(--lav-wash); border-color: #d8cdea; }
+  .pkg .tag {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lav-deep);
+  }
+  .pkg h3 { font-size: 1.5rem; }
+  .pkg .price { font-family: var(--serif); font-size: 1.9rem; }
+  .pkg .price small { font-family: var(--sans); font-size: 0.72rem; color: var(--ink-soft); letter-spacing: 0.05em; }
+  .pkg p.blurb { margin: 0; font-size: 0.92rem; color: var(--ink-soft); }
+  .pkg ul { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; font-size: 0.92rem; }
+  .pkg ul li { padding-left: 22px; position: relative; }
+  .pkg ul li::before { content: "·"; position: absolute; left: 6px; color: var(--lav-deep); font-weight: 700; }
+  .pkg .btn { margin-top: auto; align-self: flex-start; }
+
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; counter-reset: step; }
+  @media (max-width: 940px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+  .step { counter-increment: step; border-top: 2px solid var(--lav); padding-top: 16px; }
+  .step::before {
+    content: "Step " counter(step);
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--lav-deep);
+  }
+  .step b { display: block; font-family: var(--serif); font-weight: 500; font-size: 1.15rem; margin: 6px 0 4px; }
+  .step p { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+  details.faq {
+    border-bottom: 1px solid var(--rule);
+    padding: 4px 0;
+  }
+  details.faq summary {
+    cursor: pointer;
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    padding: 16px 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary::after { content: "+"; color: var(--lav-deep); font-size: 1.3rem; flex: none; }
+  details.faq[open] summary::after { content: "–"; }
+  details.faq p { margin: 0 0 18px; color: var(--ink-soft); font-size: 0.95rem; max-width: 68ch; }
+
+  /* ---------- portfolio ---------- */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 26px 0 34px; }
+  .filters button {
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .filters button[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .filters button:focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
+  .masonry { columns: 3; column-gap: 22px; }
+  @media (max-width: 940px) { .masonry { columns: 2; } }
+  @media (max-width: 560px) { .masonry { columns: 1; } }
+  .masonry figure.ph { break-inside: avoid; margin: 0 0 22px; }
+  /* on small screens the caption chatter overwhelms the images — let them breathe */
+  @media (max-width: 560px) {
+    figure.ph figcaption { display: none; }
+    .masonry figure.ph { margin-bottom: 14px; }
+    .masonry { column-gap: 14px; }
+    .swap-note { font-size: 0.8rem; }
+  }
+  .swap-note {
+    background: var(--apricot);
+    border-radius: 6px;
+    padding: 14px 20px;
+    font-size: 0.85rem;
+    color: #6b5647;
+  }
+
+  /* ---------- footer ---------- */
+  footer {
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+    background: var(--paper-deep);
+  }
+  .foot-in {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .foot-brand img { display: block; width: 170px; height: auto; margin: 0 auto; }
+  .foot-links { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; }
+  .foot-links a { color: var(--ink-soft); text-decoration: none; }
+  .foot-links a:hover { color: var(--ink); }
+  .foot-fine { font-size: 0.72rem; color: var(--ink-soft); }
+
+  /* ---------- mobile side-scroll rows (last so it wins over the grid layouts) ---------- */
+  .swipe-hint { display: none; }
+  @media (max-width: 940px) {
+    .snap-row {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 16px;
+      margin: 0 -24px;
+      padding: 4px 24px 18px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .snap-row > * { flex: 0 0 min(82%, 330px); scroll-snap-align: center; }
+    .swipe-hint {
+      display: block;
+      margin: 2px 0 0;
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-align: center;
+    }
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+    .cat .art, .btn { transition: none; }
+  }
+</style>
+
+<!-- shared defs: film-grain filter + sprig symbol (used by the placeholder frames) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="grainF">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0.24 0 0 0 0 0.21 0 0 0 0 0.29 0 0 0 0.05 0"/>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+    <g id="sprigSym" stroke-linecap="round" fill="none">
+      <path d="M0 40 C -1.2 26, 1.2 12, 0 -32" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M0 22 C -7 19, -11 13, -13 6" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M0 27 C 6.5 24, 10 18.5, 12 12" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="0" cy="-37" rx="2.7" ry="5.2" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="-5" cy="-29" rx="2.7" ry="5.2" transform="rotate(-30 -5 -29)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="5" cy="-29" rx="2.7" ry="5.2" transform="rotate(30 5 -29)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="-6" cy="-20" rx="2.7" ry="5.2" transform="rotate(-38 -6 -20)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="6" cy="-20" rx="2.7" ry="5.2" transform="rotate(38 6 -20)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="-6" cy="-11" rx="2.7" ry="5.2" transform="rotate(-44 -6 -11)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="6" cy="-11" rx="2.7" ry="5.2" transform="rotate(44 6 -11)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="-5" cy="-2" rx="2.7" ry="5.2" transform="rotate(-50 -5 -2)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+      <ellipse cx="5" cy="-2" rx="2.7" ry="5.2" transform="rotate(50 5 -2)" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.3"/>
+    </g>
+  </defs>
+</svg>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#/home" aria-label="Megan Lee Photography — home">
+      <img src="__SIDEBYSIDE__" alt="Megan Lee Photography" width="1075" height="282">
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#/home" data-r="home">Home</a>
+      <a href="#/about" data-r="about">About</a>
+      <a href="#/services" data-r="services">Services</a>
+      <a href="#/portfolio" data-r="portfolio">Portfolio</a>
+    </div>
+  </div>
+</nav>
+
+<main id="app"></main>
+
+<footer>
+  <div class="foot-in">
+    <div class="foot-brand">
+      <img src="__STACKED__" alt="Megan Lee Photography" width="880" height="602">
+    </div>
+    <div class="foot-links">
+      <a href="https://www.instagram.com/meg.lee.moments/" target="_blank" rel="noopener">Instagram — @meg.lee.moments</a>
+      <a href="mailto:hello@example.com">[hello@your-domain.com]</a>
+      <span class="foot-fine">Based in [Your City] · travels for love stories</span>
+    </div>
+    <div class="foot-fine">© 2026 Megan Lee Photography</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- placeholder frame artwork ----------
+     Pastel washes with a simple composition each — these hold the layout
+     until real photographs are dropped in. */
+  var WASHES = {
+    lav:     ["#e6ddf2", "#c9b8e2"],
+    blush:   ["#f2e2ea", "#dfc0d0"],
+    sage:    ["#e6ecdf", "#c2d1b8"],
+    apricot: ["#f7e9db", "#e8c9ac"],
+    sky:     ["#e3eaf3", "#bfcfe2"],
+    plum:    ["#544a66", "#3e3649"]
+  };
+  var frameId = 0;
+
+  function frame(opts) {
+    /* opts: wash, shape (arch|sun|blob|curve|sprig), ratio [w,h], label, cat, note */
+    var id = "f" + (++frameId);
+    var w = 100, h = Math.round(100 * opts.ratio[1] / opts.ratio[0]);
+    var g = WASHES[opts.wash];
+    var deco = "";
+    var tone = opts.wash === "plum" ? "#c3b2e0" : "#ffffff";
+    var cx = w / 2, cy = h / 2;
+
+    if (opts.shape === "arch") {
+      deco = "<path d='M" + (cx - 24) + " " + (cy + 30) + " L" + (cx - 24) + " " + cy +
+             " A24 24 0 0 1 " + (cx + 24) + " " + cy + " L" + (cx + 24) + " " + (cy + 30) + "'" +
+             " fill='" + tone + "' fill-opacity='0.35'/>";
+    } else if (opts.shape === "sun") {
+      deco = "<circle cx='" + (cx + 14) + "' cy='" + (cy - 12) + "' r='16' fill='" + tone + "' fill-opacity='0.4'/>" +
+             "<circle cx='" + (cx - 20) + "' cy='" + (cy + 22) + "' r='7' fill='" + tone + "' fill-opacity='0.25'/>";
+    } else if (opts.shape === "blob") {
+      deco = "<path d='M" + cx + " " + (cy - 22) + " C " + (cx + 26) + " " + (cy - 16) + ", " + (cx + 22) + " " + (cy + 20) + ", " +
+             cx + " " + (cy + 24) + " C " + (cx - 24) + " " + (cy + 20) + ", " + (cx - 24) + " " + (cy - 12) + ", " +
+             cx + " " + (cy - 22) + " Z' fill='" + tone + "' fill-opacity='0.3'/>";
+    } else if (opts.shape === "curve") {
+      deco = "<path d='M-5 " + (h * 0.7) + " C " + (w * 0.3) + " " + (h * 0.52) + ", " + (w * 0.7) + " " + (h * 0.88) + ", " +
+             (w + 5) + " " + (h * 0.62) + "' stroke='" + tone + "' stroke-opacity='0.5' stroke-width='10' fill='none'/>";
+    } else if (opts.shape === "sprig") {
+      deco = "<g transform='translate(" + cx + " " + cy + ") scale(0.55)' color='" + tone + "' opacity='0.65'><use href='#sprigSym'/></g>";
+    }
+
+    return "<figure class='ph' data-cat='" + (opts.cat || "") + "'>" +
+      "<span class='art'>" +
+      "<svg viewBox='0 0 " + w + " " + h + "' role='img' aria-label='Placeholder for a photograph — " + opts.label + "'>" +
+      "<defs><linearGradient id='" + id + "' x1='0' y1='0' x2='0.7' y2='1'>" +
+      "<stop offset='0' stop-color='" + g[0] + "'/><stop offset='1' stop-color='" + g[1] + "'/>" +
+      "</linearGradient></defs>" +
+      "<rect width='" + w + "' height='" + h + "' fill='url(#" + id + ")'/>" + deco +
+      "<rect width='" + w + "' height='" + h + "' fill='transparent' filter='url(#grainF)'/>" +
+      "</svg></span>" +
+      "<figcaption><i>" + opts.label + "</i><small>" + (opts.note || "your photo here") + "</small></figcaption>" +
+      "</figure>";
+  }
+
+  /* ---------- testimonials (samples — swap with real client notes) ---------- */
+  var TESTIMONIALS = [
+    { q: "Megan made us forget the camera was there. We got the gallery back and cried — they looked like <em class='serif'>us</em>.",
+      n: "Sarah &amp; James", t: "Wedding day" },
+    { q: "Our three-year-old refuses to smile for anyone, ever. Somehow every photo is a belly laugh. Witchcraft, honestly.",
+      n: "The Nguyen family", t: "Family session" },
+    { q: "It rained the whole time and she still found light I didn't know existed. Every single frame is wall-worthy.",
+      n: "Priya", t: "Fashion editorial" }
+  ];
+
+  function testi(t) {
+    return "<figure class='testi'>" +
+      "<span class='stars' aria-label='Five stars'>★★★★★</span>" +
+      "<blockquote>“" + t.q + "”</blockquote>" +
+      "<figcaption class='who'><b>" + t.n + "</b><span>" + t.t + "</span></figcaption>" +
+      "</figure>";
+  }
+
+  /* ---------- pages ---------- */
+  var PAGES = {
+    home: function () {
+      return "" +
+      "<section class='hero'><div class='wrap hero-grid'>" +
+        "<div class='hero-copy reveal'>" +
+          "<span class='eyebrow'>Megan Lee Photography</span>" +
+          "<h1>The in-between moments are the ones you'll frame.</h1>" +
+          "<p class='lede'>Candid, light-chasing photography for families, mamas-to-be, style stories, and the events worth remembering. Soft color, honest laughter — nothing stiff, nothing staged within an inch of its life.</p>" +
+          "<div class='hero-ctas'>" +
+            "<a class='btn solid' href='#/portfolio'>View the portfolio</a>" +
+            "<a class='btn' href='#/services'>Book a session</a>" +
+          "</div>" +
+          "<span class='hero-note'>Now booking [season] sessions in [Your City] &amp; beyond.</span>" +
+        "</div>" +
+        "<div class='collage reveal'>" +
+          frame({ wash: "lav", shape: "arch", ratio: [4, 5], label: "the first look", cat: "", note: "vertical" }) +
+          frame({ wash: "blush", shape: "sun", ratio: [4, 5], label: "golden hour", cat: "", note: "vertical" }) +
+          frame({ wash: "sage", shape: "curve", ratio: [5, 4], label: "the getaway", cat: "", note: "landscape" }) +
+        "</div>" +
+      "</div></section>" +
+
+      "<section class='rule-top'><div class='wrap'>" +
+        "<div class='head-row reveal'><div>" +
+          "<span class='eyebrow'>What I love to shoot</span>" +
+          "<h2>Real people, really lived-in light.</h2>" +
+        "</div><a class='btn quiet' href='#/portfolio'>See it all</a></div>" +
+        "<div class='grid4 reveal'>" +
+          "<a class='cat' href='#/portfolio?f=family'>" +
+            frame({ wash: "sage", shape: "sun", ratio: [4, 5], label: "sunday morning chaos", note: "family" }) +
+            "<h3>Family</h3><p>Snack crumbs, piggybacks, and the ten seconds everyone actually held still.</p>" +
+          "</a>" +
+          "<a class='cat' href='#/portfolio?f=maternity'>" +
+            frame({ wash: "blush", shape: "blob", ratio: [4, 5], label: "the waiting glow", note: "maternity" }) +
+            "<h3>Maternity</h3><p>The wonder, the wait, the tiny socks — the chapter before the chapter.</p>" +
+          "</a>" +
+          "<a class='cat' href='#/portfolio?f=fashion'>" +
+            frame({ wash: "lav", shape: "arch", ratio: [4, 5], label: "editorial in lavender", note: "fashion" }) +
+            "<h3>Fashion</h3><p>Editorial light and real movement — lookbooks, portfolios, personal style.</p>" +
+          "</a>" +
+          "<a class='cat' href='#/portfolio?f=events'>" +
+            frame({ wash: "apricot", shape: "curve", ratio: [4, 5], label: "confetti hour", note: "events" }) +
+            "<h3>Events</h3><p>Weddings, parties, launches — the confetti and everything in between.</p>" +
+          "</a>" +
+        "</div>" +
+      "</div></section>" +
+
+      "<section class='rule-top'><div class='wrap'>" +
+        "<div class='head-row reveal'><div>" +
+          "<span class='eyebrow'>Kind words</span>" +
+          "<h2>From the people in the photos.</h2>" +
+        "</div></div>" +
+        "<div class='testis snap-row reveal'>" + TESTIMONIALS.map(testi).join("") + "</div>" +
+        "<p class='swipe-hint'>Swipe for more →</p>" +
+        "<p class='hero-note' style='margin-top: 18px'>Sample words for now — send me real client notes and I'll swap them in.</p>" +
+      "</div></section>" +
+
+      "<section class='tight'><div class='wrap reveal'>" +
+        "<div class='band'>" +
+          "<div><h2>Let's make something worth printing.</h2>" +
+          "<p>Dates for [season] are open now — galleries delivered in two weeks.</p></div>" +
+          "<a class='btn' href='#/services'>See packages</a>" +
+        "</div>" +
+      "</div></section>";
+    },
+
+    about: function () {
+      return "" +
+      "<section><div class='wrap about-grid'>" +
+        "<div class='reveal'>" +
+          frame({ wash: "lav", shape: "sprig", ratio: [4, 5], label: "a portrait of Megan", note: "swap me in" }) +
+        "</div>" +
+        "<div class='about-copy reveal'>" +
+          "<span class='eyebrow'>About</span>" +
+          "<h1>Hi, I'm Megan.</h1>" +
+          "<p>I'm the person at the party watching the grandmother laugh at the kids' table, thinking <em class='serif'>that's the photo</em>. I've been chasing moments like that since [year] — first with a hand-me-down camera, now for the families, mamas-to-be, and celebrations kind enough to let me into their big days and ordinary Tuesdays.</p>" +
+          "<p>My style leans soft and true-to-life: pastel light, real color, no heavy filters that will look dated in five years. I shoot loose and edit gently, because the goal isn't to make you look like someone else — it's to make you look like yourselves on a really good day.</p>" +
+          "<p>When I'm not behind the camera you'll find me [three honest details — a favorite trail, an iced-coffee order, a dog's name]. Come say hi on <a href='https://www.instagram.com/meg.lee.moments/' target='_blank' rel='noopener'>Instagram</a> — the stories are where the outtakes live.</p>" +
+          "<ul class='values'>" +
+            "<li><b>Direction, not posing</b><span>I'll never park you in a stiff pose. I give you something to do, then catch what happens.</span></li>" +
+            "<li><b>Color you can live with</b><span>True skin tones and soft pastels that will still feel right on your wall in twenty years.</span></li>" +
+            "<li><b>Galleries, fast</b><span>Sneak peeks within 48 hours. Full gallery in two weeks, not two months.</span></li>" +
+          "</ul>" +
+        "</div>" +
+      "</div></section>";
+    },
+
+    services: function () {
+      return "" +
+      "<section><div class='wrap'>" +
+        "<div class='head-row reveal'><div>" +
+          "<span class='eyebrow'>Services</span>" +
+          "<h2>Three ways to work together.</h2>" +
+          "<p class='lede'>Every package includes a pre-session chat, location help, and a private online gallery with full printing rights. Prices below are placeholders — set your own.</p>" +
+        "</div></div>" +
+        "<div class='pkgs snap-row reveal'>" +
+          "<div class='pkg'>" +
+            "<span class='tag'>Mini</span><h3>The Moment</h3>" +
+            "<div class='price'>[$250] <small>/ 30 min</small></div>" +
+            "<p class='blurb'>Short and sweet — perfect for announcements, milestones, and updated family photos.</p>" +
+            "<ul><li>30-minute session, one location</li><li>25+ edited images</li><li>Online gallery in 10 days</li><li>Print release included</li></ul>" +
+            "<a class='btn quiet' href='mailto:hello@example.com'>Inquire</a>" +
+          "</div>" +
+          "<div class='pkg feature'>" +
+            "<span class='tag'>Most booked</span><h3>The Golden Hour</h3>" +
+            "<div class='price'>[$450] <small>/ 90 min</small></div>" +
+            "<p class='blurb'>The full experience — unhurried, sunset-timed, with room for wardrobe changes and wandering.</p>" +
+            "<ul><li>90 minutes, up to two locations</li><li>60+ edited images</li><li>Sneak peek within 48 hours</li><li>Styling &amp; location guide</li><li>Print release included</li></ul>" +
+            "<a class='btn solid' href='mailto:hello@example.com'>Inquire</a>" +
+          "</div>" +
+          "<div class='pkg'>" +
+            "<span class='tag'>Full day</span><h3>The Whole Story</h3>" +
+            "<div class='price'>[$1,800+] <small>/ event</small></div>" +
+            "<p class='blurb'>Weddings, elopements, and celebrations — coverage built around your day, not a template.</p>" +
+            "<ul><li>Custom hourly coverage</li><li>400+ edited images</li><li>Timeline planning together</li><li>Second shooter available</li><li>Heirloom album add-on</li></ul>" +
+            "<a class='btn quiet' href='mailto:hello@example.com'>Inquire</a>" +
+          "</div>" +
+        "</div>" +
+        "<p class='swipe-hint'>Swipe to compare packages →</p>" +
+      "</div></section>" +
+
+      "<section class='rule-top'><div class='wrap'>" +
+        "<div class='head-row reveal'><div><span class='eyebrow'>How it works</span><h2>From hello to hung-on-the-wall.</h2></div></div>" +
+        "<div class='steps reveal'>" +
+          "<div class='step'><b>Say hello</b><p>Send a note with your date and what you're dreaming up. I'll reply within two days.</p></div>" +
+          "<div class='step'><b>Plan the good part</b><p>We'll pick a spot and a time with the best light, and I'll send a short what-to-wear guide.</p></div>" +
+          "<div class='step'><b>The session</b><p>We walk, you laugh, I work. It feels less like a photoshoot and more like a hangout.</p></div>" +
+          "<div class='step'><b>Your gallery</b><p>Sneak peek in 48 hours, full edited gallery in two weeks, prints whenever you're ready.</p></div>" +
+        "</div>" +
+      "</div></section>" +
+
+      "<section class='rule-top'><div class='wrap' style='max-width: 800px'>" +
+        "<div class='head-row reveal'><div><span class='eyebrow'>FAQ</span><h2>Asked often, answered honestly.</h2></div></div>" +
+        "<div class='reveal'>" +
+        "<details class='faq'><summary>What should we wear?</summary><p>Soft, muted tones photograph beautifully with my editing style — creams, dusty pastels, earth tones. Avoid neon and big logos. Booked clients get a full styling guide.</p></details>" +
+        "<details class='faq'><summary>Our kids won't cooperate. Is that a problem?</summary><p>It's expected, honestly. The wiggles and the meltdown-averted-by-a-snack are half the story. I shoot around it, and those often end up being the favorite frames.</p></details>" +
+        "<details class='faq'><summary>How do we get our photos?</summary><p>Through a private online gallery you can download, share, and order prints from. Sneak peeks arrive within 48 hours of your session.</p></details>" +
+        "<details class='faq'><summary>Do you travel?</summary><p>Happily. Sessions within [X miles] of [Your City] are included; beyond that I add a simple travel fee — and I've never once regretted a road trip for good light.</p></details>" +
+        "<details class='faq'><summary>What if it rains?</summary><p>We watch the forecast together and reschedule for free if it turns. That said — overcast light is gorgeous and misty photos are criminally underrated.</p></details>" +
+        "</div>" +
+      "</div></section>";
+    },
+
+    portfolio: function () {
+      var shots = [
+        { wash: "sage", shape: "sun", ratio: [4, 5], label: "sunday at grandma's", cat: "family" },
+        { wash: "blush", shape: "blob", ratio: [4, 5], label: "bump, month eight", cat: "maternity" },
+        { wash: "lav", shape: "arch", ratio: [4, 5], label: "editorial in lavender", cat: "fashion" },
+        { wash: "apricot", shape: "curve", ratio: [5, 4], label: "the first dance", cat: "events" },
+        { wash: "sky", shape: "sun", ratio: [4, 5], label: "street style, dusk", cat: "fashion" },
+        { wash: "plum", shape: "sprig", ratio: [4, 5], label: "last dance of the night", cat: "events" },
+        { wash: "sage", shape: "blob", ratio: [1, 1], label: "tiny shoes, big news", cat: "maternity" },
+        { wash: "lav", shape: "curve", ratio: [5, 4], label: "the whole crew", cat: "family" },
+        { wash: "blush", shape: "arch", ratio: [4, 5], label: "the waiting glow", cat: "maternity" },
+        { wash: "apricot", shape: "sun", ratio: [1, 1], label: "confetti hour", cat: "events" },
+        { wash: "sky", shape: "blob", ratio: [4, 5], label: "golden hour lookbook", cat: "fashion" },
+        { wash: "lav", shape: "sun", ratio: [4, 5], label: "piggyback season", cat: "family" }
+      ];
+      return "" +
+      "<section><div class='wrap'>" +
+        "<div class='reveal'>" +
+          "<span class='eyebrow'>Portfolio</span>" +
+          "<h1 style='font-size: clamp(2rem, 4vw, 3rem)'>Moments, kept.</h1>" +
+          "<p class='lede' style='margin-top: 12px'>A rotating collection of recent favorites.</p>" +
+          "<p class='swap-note' style='margin-top: 20px'><b>Note for Megan:</b> these frames are placeholders in your brand palette. Send me your photos from <a href='https://www.instagram.com/meg.lee.moments/' target='_blank' rel='noopener'>@meg.lee.moments</a> (Instagram blocks me from fetching them directly) and they'll drop straight into this grid.</p>" +
+        "</div>" +
+        "<div class='filters reveal' id='filters' role='group' aria-label='Filter portfolio'>" +
+          "<button data-f='all' aria-pressed='true'>All</button>" +
+          "<button data-f='family' aria-pressed='false'>Family</button>" +
+          "<button data-f='maternity' aria-pressed='false'>Maternity</button>" +
+          "<button data-f='fashion' aria-pressed='false'>Fashion</button>" +
+          "<button data-f='events' aria-pressed='false'>Events</button>" +
+        "</div>" +
+        "<div class='masonry reveal' id='masonry'>" +
+          shots.map(function (s) { s.note = s.cat; return frame(s); }).join("") +
+        "</div>" +
+      "</div></section>" +
+
+      "<section class='tight'><div class='wrap reveal'>" +
+        "<div class='band'>" +
+          "<div><h2>See something you like?</h2>" +
+          "<p>Your story deserves this treatment too.</p></div>" +
+          "<a class='btn' href='#/services'>Check availability</a>" +
+        "</div>" +
+      "</div></section>";
+    }
+  };
+
+  /* ---------- router ---------- */
+  var app = document.getElementById("app");
+  var navLinks = document.getElementById("navLinks");
+
+  function route() {
+    var r = (location.hash.replace(/^#\/?/, "") || "home").split("?")[0];
+    if (!PAGES[r]) r = "home";
+    frameId = 0;
+    app.innerHTML = PAGES[r]();
+    navLinks.querySelectorAll("a").forEach(function (a) {
+      a.classList.toggle("on", a.dataset.r === r);
+    });
+    document.title = "Megan Lee Photography" + (r === "home" ? "" : " — " + r.charAt(0).toUpperCase() + r.slice(1));
+    window.scrollTo(0, 0);
+    wirePage(r);
+    observeReveals();
+  }
+
+  function wirePage(r) {
+    if (r !== "portfolio") return;
+    var filters = document.getElementById("filters");
+    var masonry = document.getElementById("masonry");
+    filters.addEventListener("click", function (e) {
+      var btn = e.target.closest("button[data-f]");
+      if (!btn) return;
+      filters.querySelectorAll("button").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      var f = btn.dataset.f;
+      masonry.querySelectorAll("figure.ph").forEach(function (fig) {
+        fig.style.display = (f === "all" || fig.dataset.cat === f) ? "" : "none";
+      });
+    });
+    /* honor #/portfolio?f=family style links from the category cards */
+    var pre = (/[?&]f=([a-z]+)/.exec(location.hash) || [])[1];
+    if (pre) {
+      var btn = filters.querySelector("button[data-f='" + pre + "']");
+      if (btn) btn.click();
+    }
+  }
+
+  var io = null;
+  function observeReveals() {
+    if (io) io.disconnect();
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window) ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      els.forEach(function (el) { el.classList.add("in"); });
+      return;
+    }
+    io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  }
+
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
