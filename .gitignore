@@ -7,3 +7,4 @@ node_modules/
 resources/download*.png
 site/pagescript.js
 site/site.html
+copypaste/

@@ -9,20 +9,29 @@
 <body>
 <title>Megan Lee Photography</title>
 <style>
-  /* A deliberately light, airy brand world — ivory paper, plum ink, lavender accents.
-     Single-theme by design: the palette IS the brand. */
+  /* A deliberately light, airy brand world — ivory paper, plum ink, lavender and
+     sage in equal partnership, gold as the one metallic. Single-theme by design:
+     the palette IS the brand. Greens and gold are sampled from Megan's moodboards
+     (swatch strip: #40553e #7d8e7b #927092 #c8a2c8 #d6c1d0; gold #b19d83). */
   :root {
     --paper: #fbf9f5;
-    --paper-deep: #f3eef7;
     --ink: #3e3649;
     --ink-soft: #7a7086;
     --lav: #a48fc4;
     --lav-deep: #7c689c;
     --lav-wash: #efeaf6;
-    --blush: #e8d8e0;
-    --sage: #dde5d8;
-    --apricot: #f2e2d4;
+    --orchid: #c8a2c8;
+    /* the green half of the palette — sage was a near-white tint before and went unused */
+    --green-deep: #40553e;
+    --sage: #7d8e7b;
+    --sage-deep: #5f7260;
+    --sage-wash: #eaeee6;
+    /* the one metallic */
+    --gold: #b19d83;
+    --gold-deep: #756345; /* darkened from the board's #b19d83 to clear 4.5:1 on both washes */
+    --gold-wash: #f4eee3;
     --rule: #e2dbea;
+    --rule-sage: #d9e0d4;
     --serif: Didot, "Bodoni MT", "Playfair Display", "Hoefler Text", Georgia, serif;
     --sans: "Avenir Next", Avenir, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   }
@@ -192,14 +201,14 @@
   /* ---------- testimonials ---------- */
   .testis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
   .testi {
-    background: var(--lav-wash);
+    background: var(--sage-wash);
     border-radius: 6px;
     padding: 30px 28px;
     display: flex;
     flex-direction: column;
     gap: 14px;
   }
-  .testi .stars { color: var(--lav-deep); letter-spacing: 0.22em; font-size: 0.8rem; }
+  .testi .stars { color: var(--gold-deep); letter-spacing: 0.22em; font-size: 0.8rem; }
   .testi blockquote {
     margin: 0;
     font-family: var(--serif);
@@ -268,7 +277,7 @@
     gap: 14px;
     background: #fff;
   }
-  .pkg.feature { background: var(--lav-wash); border-color: #d8cdea; }
+  .pkg.feature { background: var(--lav-wash); border-color: var(--orchid); }
   .pkg .tag {
     font-size: 0.66rem;
     font-weight: 700;
@@ -276,6 +285,8 @@
     text-transform: uppercase;
     color: var(--lav-deep);
   }
+  /* gold is the premium cue, so it marks the featured package and nothing else */
+  .pkg.feature .tag { color: var(--gold-deep); }
   .pkg h3 { font-size: 1.5rem; }
   .pkg .price { font-family: var(--serif); font-size: 1.9rem; }
   .pkg .price small { font-family: var(--sans); font-size: 0.72rem; color: var(--ink-soft); letter-spacing: 0.05em; }
@@ -289,6 +300,9 @@
   @media (max-width: 940px) { .steps { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
   .step { counter-increment: step; border-top: 2px solid var(--lav); padding-top: 16px; }
+  /* alternate the rules lavender / sage, the way the moodboards alternate the two */
+  .step:nth-child(even) { border-top-color: var(--sage); }
+  .step:nth-child(even)::before { color: var(--sage-deep); }
   .step::before {
     content: "Step " counter(step);
     font-size: 0.66rem;
@@ -351,7 +365,8 @@
     .swap-note { font-size: 0.8rem; }
   }
   .swap-note {
-    background: var(--apricot);
+    background: var(--gold-wash);
+    border-left: 3px solid var(--gold);
     border-radius: 6px;
     padding: 14px 20px;
     font-size: 0.85rem;
@@ -359,10 +374,11 @@
   }
 
   /* ---------- footer ---------- */
+  /* sage rather than lilac, so the page closes on the green half of the palette */
   footer {
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--rule-sage);
     margin-top: 40px;
-    background: var(--paper-deep);
+    background: var(--sage-wash);
   }
   .foot-in {
     max-width: 1120px;
@@ -377,7 +393,7 @@
   .foot-brand img { display: block; width: 170px; height: auto; margin: 0 auto; }
   .foot-links { display: flex; flex-direction: column; gap: 6px; font-size: 0.88rem; }
   .foot-links a { color: var(--ink-soft); text-decoration: none; }
-  .foot-links a:hover { color: var(--ink); }
+  .foot-links a:hover { color: var(--green-deep); }
   .foot-fine { font-size: 0.72rem; color: var(--ink-soft); }
 
   /* ---------- mobile side-scroll rows (last so it wins over the grid layouts) ---------- */
@@ -479,11 +495,13 @@
      until real photographs are dropped in. */
   var WASHES = {
     lav:     ["#e6ddf2", "#c9b8e2"],
+    orchid:  ["#eddfec", "#c8a2c8"],
     blush:   ["#f2e2ea", "#dfc0d0"],
-    sage:    ["#e6ecdf", "#c2d1b8"],
-    apricot: ["#f7e9db", "#e8c9ac"],
-    sky:     ["#e3eaf3", "#bfcfe2"],
-    plum:    ["#544a66", "#3e3649"]
+    sage:    ["#e4eade", "#a8bba4"],
+    olive:   ["#dde4d8", "#7d8e7b"],
+    gold:    ["#f4ece0", "#cbb595"],
+    plum:    ["#544a66", "#3e3649"],
+    forest:  ["#5a7157", "#40553e"]
   };
   var frameId = 0;
 
@@ -493,7 +511,10 @@
     var w = 100, h = Math.round(100 * opts.ratio[1] / opts.ratio[0]);
     var g = WASHES[opts.wash];
     var deco = "";
-    var tone = opts.wash === "plum" ? "#c3b2e0" : "#ffffff";
+    var DARK = { plum: "#c3b2e0", forest: "#cfdcc9" };
+    var tone = DARK[opts.wash] || "#ffffff";
+    /* the sprig is a botanical, so it reads as foliage rather than a white ghost */
+    var sprigTone = DARK[opts.wash] || "#5f7260";
     var cx = w / 2, cy = h / 2;
 
     if (opts.shape === "arch") {
@@ -511,7 +532,7 @@
       deco = "<path d='M-5 " + (h * 0.7) + " C " + (w * 0.3) + " " + (h * 0.52) + ", " + (w * 0.7) + " " + (h * 0.88) + ", " +
              (w + 5) + " " + (h * 0.62) + "' stroke='" + tone + "' stroke-opacity='0.5' stroke-width='10' fill='none'/>";
     } else if (opts.shape === "sprig") {
-      deco = "<g transform='translate(" + cx + " " + cy + ") scale(0.55)' color='" + tone + "' opacity='0.65'><use href='#sprigSym'/></g>";
+      deco = "<g transform='translate(" + cx + " " + cy + ") scale(0.55)' color='" + sprigTone + "' opacity='0.55'><use href='#sprigSym'/></g>";
     }
 
     return "<figure class='ph' data-cat='" + (opts.cat || "") + "'>" +
@@ -586,7 +607,7 @@
             "<h3>Fashion</h3><p>Editorial light and real movement — lookbooks, portfolios, personal style.</p>" +
           "</a>" +
           "<a class='cat' href='#/portfolio?f=events'>" +
-            frame({ wash: "apricot", shape: "curve", ratio: [4, 5], label: "confetti hour", note: "events" }) +
+            frame({ wash: "gold", shape: "curve", ratio: [4, 5], label: "confetti hour", note: "events" }) +
             "<h3>Events</h3><p>Weddings, parties, launches — the confetti and everything in between.</p>" +
           "</a>" +
         "</div>" +
@@ -693,14 +714,14 @@
         { wash: "sage", shape: "sun", ratio: [4, 5], label: "sunday at grandma's", cat: "family" },
         { wash: "blush", shape: "blob", ratio: [4, 5], label: "bump, month eight", cat: "maternity" },
         { wash: "lav", shape: "arch", ratio: [4, 5], label: "editorial in lavender", cat: "fashion" },
-        { wash: "apricot", shape: "curve", ratio: [5, 4], label: "the first dance", cat: "events" },
-        { wash: "sky", shape: "sun", ratio: [4, 5], label: "street style, dusk", cat: "fashion" },
+        { wash: "gold", shape: "curve", ratio: [5, 4], label: "the first dance", cat: "events" },
+        { wash: "forest", shape: "sun", ratio: [4, 5], label: "street style, dusk", cat: "fashion" },
         { wash: "plum", shape: "sprig", ratio: [4, 5], label: "last dance of the night", cat: "events" },
         { wash: "sage", shape: "blob", ratio: [1, 1], label: "tiny shoes, big news", cat: "maternity" },
         { wash: "lav", shape: "curve", ratio: [5, 4], label: "the whole crew", cat: "family" },
-        { wash: "blush", shape: "arch", ratio: [4, 5], label: "the waiting glow", cat: "maternity" },
-        { wash: "apricot", shape: "sun", ratio: [1, 1], label: "confetti hour", cat: "events" },
-        { wash: "sky", shape: "blob", ratio: [4, 5], label: "golden hour lookbook", cat: "fashion" },
+        { wash: "orchid", shape: "arch", ratio: [4, 5], label: "the waiting glow", cat: "maternity" },
+        { wash: "gold", shape: "sun", ratio: [1, 1], label: "confetti hour", cat: "events" },
+        { wash: "olive", shape: "blob", ratio: [4, 5], label: "golden hour lookbook", cat: "fashion" },
         { wash: "lav", shape: "sun", ratio: [4, 5], label: "piggyback season", cat: "family" }
       ];
       return "" +
