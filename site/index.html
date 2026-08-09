@@ -187,9 +187,11 @@
     flex-wrap: wrap;
   }
   .head-row .lede { margin: 6px 0 0; }
-  .grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  @media (max-width: 940px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .grid4 { grid-template-columns: 1fr; } }
+  /* six categories, so three across reads evenly rather than a 4 + 2 orphan row */
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  /* stays two-up even on phones — six stacked full-width cards is a punishing scroll */
+  @media (max-width: 940px) { .cat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .cat-grid { gap: 14px; } }
 
   .cat { text-decoration: none; color: var(--ink); display: block; }
   .cat h3 { margin: 14px 0 4px; }
@@ -574,7 +576,7 @@
         "<div class='hero-copy reveal'>" +
           "<span class='eyebrow'>Megan Lee Photography</span>" +
           "<h1>The in-between moments are the ones you'll frame.</h1>" +
-          "<p class='lede'>Candid, light-chasing photography for families, mamas-to-be, style stories, and the events worth remembering. Soft color, honest laughter — nothing stiff, nothing staged within an inch of its life.</p>" +
+          "<p class='lede'>Candid, light-chasing photography for families, mamas-to-be, brand-new arrivals, style stories, and the milestones and events worth remembering. Soft color, honest laughter — nothing stiff, nothing staged within an inch of its life.</p>" +
           "<div class='hero-ctas'>" +
             "<a class='btn solid' href='#/portfolio'>View the portfolio</a>" +
             "<a class='btn' href='#/services'>Book a session</a>" +
@@ -593,7 +595,7 @@
           "<span class='eyebrow'>What I love to shoot</span>" +
           "<h2>Real people, really lived-in light.</h2>" +
         "</div><a class='btn quiet' href='#/portfolio'>See it all</a></div>" +
-        "<div class='grid4 reveal'>" +
+        "<div class='cat-grid reveal'>" +
           "<a class='cat' href='#/portfolio?f=family'>" +
             frame({ wash: "sage", shape: "sun", ratio: [4, 5], label: "sunday morning chaos", note: "family" }) +
             "<h3>Family</h3><p>Snack crumbs, piggybacks, and the ten seconds everyone actually held still.</p>" +
@@ -601,6 +603,14 @@
           "<a class='cat' href='#/portfolio?f=maternity'>" +
             frame({ wash: "blush", shape: "blob", ratio: [4, 5], label: "the waiting glow", note: "maternity" }) +
             "<h3>Maternity</h3><p>The wonder, the wait, the tiny socks — the chapter before the chapter.</p>" +
+          "</a>" +
+          "<a class='cat' href='#/portfolio?f=newborn'>" +
+            frame({ wash: "orchid", shape: "blob", ratio: [4, 5], label: "nine days new", note: "newborn" }) +
+            "<h3>Newborn</h3><p>Curled, sleepy, and impossibly small — before they change again next week.</p>" +
+          "</a>" +
+          "<a class='cat' href='#/portfolio?f=milestones'>" +
+            frame({ wash: "olive", shape: "sun", ratio: [4, 5], label: "one whole year", note: "milestones" }) +
+            "<h3>Milestones</h3><p>First birthdays, first steps, first days of school — the ones you'll want back.</p>" +
           "</a>" +
           "<a class='cat' href='#/portfolio?f=fashion'>" +
             frame({ wash: "lav", shape: "arch", ratio: [4, 5], label: "editorial in lavender", note: "fashion" }) +
@@ -722,7 +732,13 @@
         { wash: "orchid", shape: "arch", ratio: [4, 5], label: "the waiting glow", cat: "maternity" },
         { wash: "gold", shape: "sun", ratio: [1, 1], label: "confetti hour", cat: "events" },
         { wash: "olive", shape: "blob", ratio: [4, 5], label: "golden hour lookbook", cat: "fashion" },
-        { wash: "lav", shape: "sun", ratio: [4, 5], label: "piggyback season", cat: "family" }
+        { wash: "lav", shape: "sun", ratio: [4, 5], label: "piggyback season", cat: "family" },
+        { wash: "orchid", shape: "blob", ratio: [4, 5], label: "nine days new", cat: "newborn" },
+        { wash: "sage", shape: "sprig", ratio: [1, 1], label: "ten tiny fingers", cat: "newborn" },
+        { wash: "blush", shape: "curve", ratio: [5, 4], label: "first morning home", cat: "newborn" },
+        { wash: "olive", shape: "sun", ratio: [4, 5], label: "one whole year", cat: "milestones" },
+        { wash: "gold", shape: "blob", ratio: [4, 5], label: "cake, everywhere", cat: "milestones" },
+        { wash: "forest", shape: "curve", ratio: [5, 4], label: "first day of school", cat: "milestones" }
       ];
       return "" +
       "<section><div class='wrap'>" +
@@ -736,6 +752,8 @@
           "<button data-f='all' aria-pressed='true'>All</button>" +
           "<button data-f='family' aria-pressed='false'>Family</button>" +
           "<button data-f='maternity' aria-pressed='false'>Maternity</button>" +
+          "<button data-f='newborn' aria-pressed='false'>Newborn</button>" +
+          "<button data-f='milestones' aria-pressed='false'>Milestones</button>" +
           "<button data-f='fashion' aria-pressed='false'>Fashion</button>" +
           "<button data-f='events' aria-pressed='false'>Events</button>" +
         "</div>" +
